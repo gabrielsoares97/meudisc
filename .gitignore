@@ -1,0 +1,16 @@
+node_modules/
+dist/
+
+# Gerado pelo "npm install" (scripts/vendor.js)
+src/vendor/
+
+# Chave que assina o APK do Android: fica só no seu PC, nunca no repositório
+android/meudisc.keystore
+android/keystore.properties
+*.keystore
+*.jks
+
+# Sistema
+Thumbs.db
+Desktop.ini
+.DS_Store

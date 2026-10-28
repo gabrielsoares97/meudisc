@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: mediastream:; font-src 'self'; connect-src 'self' https: wss:">
+  <title>MeuDisc</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+      <symbol id="i-mic-off" viewBox="0 0 24 24"><path d="M15 9.5V6a3 3 0 0 0-5.7-1.3M9 9v2a3 3 0 0 0 4.9 2.3M5.5 11a6.5 6.5 0 0 0 10.7 5M18.5 11c0 .6-.1 1.2-.3 1.8M12 17.5V21M4 4l16 16"/></symbol>
+      <symbol id="i-cam" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3z"/></symbol>
+      <symbol id="i-cam-off" viewBox="0 0 24 24"><path d="M10 6h3.5A2.5 2.5 0 0 1 16 8.5v2l5-3v9l-3.2-1.9M16 16v-.5a2.5 2.5 0 0 1-2.5 2.5h-8A2.5 2.5 0 0 1 3 15.5v-7A2.5 2.5 0 0 1 5 6M4 4l16 16"/></symbol>
+      <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M8.5 20.5h7M12 16.5v4"/></symbol>
+      <symbol id="i-screen-stop" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M8.5 20.5h7M12 16.5v4M9.5 7.75l5 5M14.5 7.75l-5 5"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-5 4v-4.2A1.5 1.5 0 0 1 4 14.5z"/></symbol>
+      <symbol id="i-leave" viewBox="0 0 24 24"><path d="M14 4h4.5A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5H14M9.5 16.5 5 12l4.5-4.5M5 12h10.5"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2"/><path d="M15.5 8.5V5.5A1.5 1.5 0 0 0 14 4H5.5A1.5 1.5 0 0 0 4 5.5V14a1.5 1.5 0 0 0 1.5 1.5h3"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+      <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.1 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.1-3.6-8.5S9.6 5.8 12 3.5z"/></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 6 8.5 12l6 6"/></symbol>
+      <symbol id="i-forward" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+      <symbol id="i-volume-off" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/></symbol>
+      <symbol id="i-reload" viewBox="0 0 24 24"><path d="M19 12a7 7 0 1 1-2.05-4.95M19 5v4h-4"/></symbol>
+      <symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6.5 10h.01M10 10h.01M13.5 10h.01M17 10h.01M6.5 13.5h.01M17 13.5h.01M9.5 14h5"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Início -->
+  <main id="home" class="home">
+    <section class="home-intro">
+      <h1 class="wordmark">MeuDisc</h1>
+      <p class="lede">Uma sala para você e até 7 amigos. Voz, câmera e tela em até 120 quadros por segundo, direto de um computador para o outro.</p>
+    </section>
+
+    <section class="home-actions" aria-label="Começar">
+      <label class="field">
+        <span>Seu nome</span>
+        <input id="name-input" type="text" maxlength="24" autocomplete="nickname" placeholder="Como seus amigos vão te ver">
+      </label>
+
+      <button id="create-btn" class="btn btn-primary btn-big" type="button">Criar sala</button>
+
+      <form id="join-form" class="join" autocomplete="off">
+        <label class="field">
+          <span>Ou entre na sala de alguém</span>
+          <input id="code-input" class="code-input" type="text" inputmode="text" placeholder="CÓDIGO" spellcheck="false" aria-describedby="home-error">
+        </label>
+        <button id="join-btn" class="btn" type="submit">Entrar</button>
+      </form>
+
+      <p id="home-error" class="form-error" role="alert"></p>
+
+      <button id="home-settings-btn" class="link-btn" type="button">
+        <svg class="i"><use href="#i-settings"/></svg> Microfone, câmera e conexão
+      </button>
+    </section>
+  </main>
+
+  <!-- Sala -->
+  <section id="room" class="room" hidden>
+    <header class="room-bar">
+      <span class="wordmark wordmark-sm">MeuDisc</span>
+      <div class="room-code-chip">
+        <span class="room-code-label">Sala</span>
+        <span id="room-code" class="room-code">------</span>
+        <button id="copy-invite-btn" class="icon-btn" type="button" title="Copiar convite" aria-label="Copiar convite">
+          <svg class="i"><use href="#i-copy"/></svg>
+        </button>
+      </div>
+      <div id="conn-status" class="conn-status" data-state="waiting">
+        <span class="dot"></span><span id="conn-text">Só você na sala</span>
+      </div>
+      <button id="room-settings-btn" class="icon-btn" type="button" title="Configurações" aria-label="Configurações">
+        <svg class="i"><use href="#i-settings"/></svg>
+      </button>
+    </header>
+
+    <div class="room-body">
+      <div id="stage" class="stage" data-view="people">
+        <div class="stage-main">
+        <!-- Transmissão que você está assistindo -->
+        <div id="screen-view" class="screen-view" hidden>
+          <video id="remote-screen" autoplay playsinline muted></video>
+          <svg id="remote-cursor" class="remote-cursor" viewBox="0 0 16 24" aria-hidden="true" hidden><path d="M1 1v19l5-5 3.5 7.5 3-1.4L9 13.6h7z"/></svg>
+          <div class="screen-overlay">
+            <div class="screen-tools">
+              <div class="vol" title="Volume da transmissão" hidden id="screen-vol-wrap">
+                <button id="screen-mute" class="icon-btn" type="button" aria-label="Silenciar a transmissão">
+                  <svg class="i on"><use href="#i-volume"/></svg><svg class="i off"><use href="#i-volume-off"/></svg>
+                </button>
+                <input id="screen-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume da transmissão">
+              </div>
+              <span id="screen-audio-status" class="screen-audio-status" hidden>Sem som</span>
+              <button id="fullscreen-btn" class="tool-btn" type="button" title="Tela cheia (duplo clique)">
+                <svg class="i"><use href="#i-expand"/></svg><span id="fullscreen-label">Tela cheia</span>
+              </button>
+              <button id="unwatch-btn" class="tool-btn tool-close" type="button" title="Parar de assistir esta transmissão">
+                <svg class="i"><use href="#i-close"/></svg><span>Fechar transmissão</span>
+              </button>
+            </div>
+            <p id="screen-caption" class="screen-caption"></p>
+          </div>
+        </div>
+
+        <!-- Navegador compartilhado: roda no PC de quem abriu, todos podem mexer -->
+        <div id="browser-view" class="browser-view" hidden>
+          <div class="browser-bar">
+            <button id="b-back" class="icon-btn" type="button" title="Voltar" aria-label="Voltar"><svg class="i"><use href="#i-back"/></svg></button>
+            <button id="b-forward" class="icon-btn" type="button" title="Avançar" aria-label="Avançar"><svg class="i"><use href="#i-forward"/></svg></button>
+            <button id="b-reload" class="icon-btn" type="button" title="Recarregar" aria-label="Recarregar"><svg class="i"><use href="#i-reload"/></svg></button>
+            <form id="b-form" class="browser-url" autocomplete="off">
+              <input id="b-url" type="text" spellcheck="false" placeholder="Digite um endereço ou pesquise" aria-label="Endereço">
+            </form>
+            <button id="b-adblock" class="chip-btn" type="button" title="Bloquear anúncios (só quem abriu o navegador muda)">
+              <svg class="i"><use href="#i-shield"/></svg><span id="b-adblock-label">Bloqueando anúncios</span>
+            </button>
+            <div class="vol browser-vol" title="Volume do navegador (só para você)">
+              <button id="b-mute" class="icon-btn" type="button" aria-label="Silenciar o navegador">
+                <svg class="i on"><use href="#i-volume"/></svg><svg class="i off"><use href="#i-volume-off"/></svg>
+              </button>
+              <input id="b-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume do navegador">
+            </div>
+            <button id="b-keyboard" class="icon-btn touch-only" type="button" title="Teclado" aria-label="Abrir o teclado"><svg class="i"><use href="#i-keyboard"/></svg></button>
+            <button id="b-fullscreen" class="icon-btn" type="button" title="Tela cheia (Esc para sair)" aria-label="Tela cheia"><svg class="i"><use href="#i-expand"/></svg></button>
+            <span id="b-owner" class="browser-owner"></span>
+            <div id="b-allow" class="seg" title="Quem pode mexer no navegador">
+              <button type="button" data-v="all">Todos mexem</button>
+              <button type="button" data-v="me">Só eu</button>
+            </div>
+            <button id="b-close" class="btn btn-danger btn-small" type="button">Fechar navegador</button>
+            <button id="b-leave" class="btn btn-small" type="button" title="Parar de assistir o navegador">Fechar</button>
+          </div>
+          <div id="b-surface" class="browser-surface" tabindex="0" aria-label="Navegador compartilhado">
+            <video id="browser-video" autoplay playsinline muted></video>
+            <p id="b-locked" class="browser-locked" hidden></p>
+          </div>
+          <input id="b-ime" class="browser-ime" type="text" tabindex="-1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Digitar no navegador">
+        </div>
+
+        <!-- Sua transmissão (quando você não está assistindo ninguém) -->
+        <div id="local-share-view" class="local-share" hidden>
+          <video id="local-screen" autoplay playsinline muted></video>
+          <div class="local-share-info">
+            <p class="local-share-title">Você está transmitindo <strong id="share-name"></strong></p>
+            <dl class="tx-stats">
+              <div><dt>Assistindo</dt><dd id="tx-viewers">—</dd></div>
+              <div><dt>Enviando</dt><dd id="tx-fps">—</dd></div>
+              <div><dt>Resolução</dt><dd id="tx-res">—</dd></div>
+              <div><dt>Taxa</dt><dd id="tx-rate">—</dd></div>
+              <div><dt>Codificador</dt><dd id="tx-enc">—</dd></div>
+              <div><dt>Captura</dt><dd id="tx-capture">—</dd></div>
+              <div><dt>Som</dt><dd id="tx-sound">—</dd></div>
+            </dl>
+            <p id="tx-hint" class="tx-hint"></p>
+            <button id="stop-share-btn" class="btn btn-danger" type="button">Parar transmissão</button>
+          </div>
+        </div>
+
+        </div>
+
+        <!-- Pessoas -->
+        <div id="people" class="people">
+          <figure id="tile-me" class="tile" data-cam="off">
+            <video id="local-cam" class="mirror" autoplay playsinline muted></video>
+            <div class="avatar" id="avatar-me"></div>
+            <div class="tile-live" hidden><span class="live-badge">Ao vivo</span></div>
+            <figcaption><span class="tile-name" id="name-me">Você</span><svg class="i mic-off-badge"><use href="#i-mic-off"/></svg></figcaption>
+          </figure>
+          <div id="invite-tile" class="tile invite">
+            <p class="waiting-label">Mande este código para seus amigos</p>
+            <p id="waiting-code" class="waiting-code">------</p>
+            <p class="waiting-help">Eles abrem o MeuDisc, digitam o código e entram. Cabem até 8 pessoas na sala.</p>
+            <button id="waiting-copy-btn" class="btn btn-primary" type="button"><svg class="i"><use href="#i-copy"/></svg> Copiar convite</button>
+          </div>
+        </div>
+      </div>
+
+      <aside id="chat" class="chat" hidden aria-label="Chat">
+        <header class="chat-head">
+          <h2>Chat</h2>
+          <button id="chat-close-btn" class="icon-btn" type="button" aria-label="Fechar chat"><svg class="i"><use href="#i-close"/></svg></button>
+        </header>
+        <ol id="chat-log" class="chat-log"></ol>
+        <form id="chat-form" class="chat-form" autocomplete="off">
+          <input id="chat-input" type="text" maxlength="1000" placeholder="Escreva uma mensagem" aria-label="Mensagem">
+          <button class="btn" type="submit">Enviar</button>
+        </form>
+      </aside>
+    </div>
+
+    <nav class="dock" aria-label="Controles da chamada">
+      <button id="mic-btn" class="dock-btn" type="button" data-on="false">
+        <svg class="i on"><use href="#i-mic"/></svg><svg class="i off"><use href="#i-mic-off"/></svg>
+        <span>Microfone</span>
+      </button>
+      <button id="cam-btn" class="dock-btn" type="button" data-on="false">
+        <svg class="i on"><use href="#i-cam"/></svg><svg class="i off"><use href="#i-cam-off"/></svg>
+        <span>Câmera</span>
+      </button>
+      <button id="share-btn" class="dock-btn dock-share" type="button" data-on="false">
+        <svg class="i on"><use href="#i-screen-stop"/></svg><svg class="i off"><use href="#i-screen"/></svg>
+        <span id="share-btn-label">Compartilhar tela</span>
+      </button>
+      <button id="browser-btn" class="dock-btn" type="button" data-on="false">
+        <svg class="i on"><use href="#i-globe"/></svg><svg class="i off"><use href="#i-globe"/></svg>
+        <span id="browser-btn-label">Abrir navegador</span>
+      </button>
+      <button id="chat-btn" class="dock-btn" type="button" data-on="false">
+        <svg class="i on"><use href="#i-chat"/></svg><svg class="i off"><use href="#i-chat"/></svg>
+        <span>Chat</span><b id="chat-badge" class="badge" hidden>0</b>
+      </button>
+      <button id="leave-btn" class="dock-btn dock-leave" type="button">
+        <svg class="i"><use href="#i-leave"/></svg>
+        <span>Sair</span>
+      </button>
+    </nav>
+  </section>
+
+  <!-- Escolher o que compartilhar -->
+  <dialog id="share-dialog" class="dialog dialog-wide" aria-labelledby="share-title">
+    <form method="dialog" class="dialog-inner" id="share-form">
+      <header class="dialog-head">
+        <h2 id="share-title">Compartilhar tela</h2>
+        <button class="icon-btn" value="cancel" aria-label="Fechar"><svg class="i"><use href="#i-close"/></svg></button>
+      </header>
+
+      <div id="source-area">
+        <div class="source-heading">
+          <div class="seg" role="tablist" id="source-tabs">
+            <button type="button" role="tab" data-kind="screen" aria-selected="true">Telas inteiras</button>
+            <button type="button" role="tab" data-kind="window" aria-selected="false">Janelas</button>
+          </div>
+          <button id="refresh-sources" class="btn btn-small" type="button">Atualizar lista</button>
+        </div>
+        <div id="source-grid" class="source-grid" role="listbox" aria-label="O que compartilhar"></div>
+        <p id="source-tip" class="note source-tip">No Windows, a tela inteira é capturada direto da placa de vídeo e acompanha a taxa do monitor (120 Hz ou mais). No Mac, para jogos, prefira a janela do jogo.</p>
+      </div>
+      <p id="source-browser-note" class="note" hidden>O navegador vai perguntar o que você quer compartilhar.</p>
+
+      <div class="share-opts">
+        <fieldset>
+          <legend>Resolução</legend>
+          <div class="seg" id="opt-res">
+            <button type="button" data-v="720">720p</button>
+            <button type="button" data-v="1080">1080p</button>
+            <button type="button" data-v="1440">1440p</button>
+            <button type="button" data-v="0">Original</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Quadros por segundo</legend>
+          <div class="seg" id="opt-fps">
+            <button type="button" data-v="30">30</button>
+            <button type="button" data-v="60">60</button>
+            <button type="button" data-v="120">120</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Priorizar</legend>
+          <div class="seg" id="opt-mode">
+            <button type="button" data-v="motion" title="Mantém os quadros por segundo; reduz a resolução se a internet apertar">Fluidez</button>
+            <button type="button" data-v="detail" title="Mantém o texto nítido; reduz os quadros por segundo se a internet apertar">Nitidez</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Qualidade máxima <output id="opt-rate-out"></output></legend>
+          <input id="opt-rate" type="range" min="2" max="60" step="1">
+        </fieldset>
+        <fieldset>
+          <legend>Codec de vídeo</legend>
+          <select id="opt-codec">
+            <option value="auto">Automático (H.264)</option>
+            <option value="H264">H.264 — usa a placa de vídeo na maioria dos PCs</option>
+            <option value="VP9">VP9</option>
+            <option value="AV1">AV1 — placas de vídeo recentes</option>
+            <option value="VP8">VP8</option>
+          </select>
+        </fieldset>
+        <label class="check" id="opt-audio-wrap">
+          <input id="opt-audio" type="checkbox">
+          <span><span id="opt-audio-title">Enviar o som</span>
+            <small id="opt-audio-help"></small>
+          </span>
+        </label>
+      </div>
+
+      <footer class="dialog-foot">
+        <p id="share-error" class="form-error" role="alert"></p>
+        <button class="btn" value="cancel">Cancelar</button>
+        <button id="share-go" class="btn btn-primary" value="go" type="button">Compartilhar</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- Configurações -->
+  <dialog id="settings-dialog" class="dialog" aria-labelledby="settings-title">
+    <form method="dialog" class="dialog-inner" id="settings-form">
+      <header class="dialog-head">
+        <h2 id="settings-title">Configurações</h2>
+        <button class="icon-btn" value="cancel" aria-label="Fechar"><svg class="i"><use href="#i-close"/></svg></button>
+      </header>
+      <div class="settings-grid">
+        <label class="field"><span>Seu nome</span><input id="set-name" type="text" maxlength="24"></label>
+        <label class="field"><span>Microfone</span><select id="set-mic"></select></label>
+        <label class="field"><span>Câmera</span><select id="set-cam"></select></label>
+        <label class="field" id="set-speaker-wrap"><span>Saída de som</span><select id="set-speaker"></select></label>
+        <details class="advanced">
+          <summary>Conexão avançada (TURN)</summary>
+          <p class="note">Só precisa disso se vocês não conseguirem se conectar, o que acontece em algumas redes de empresa ou de operadora. Coloque aqui os dados de um servidor TURN seu.</p>
+          <label class="field"><span>Endereço</span><input id="set-turn-url" type="text" placeholder="turn:meuservidor.com:3478" spellcheck="false"></label>
+          <label class="field"><span>Usuário</span><input id="set-turn-user" type="text" spellcheck="false"></label>
+          <label class="field"><span>Senha</span><input id="set-turn-pass" type="password"></label>
+        </details>
+      </div>
+      <footer class="dialog-foot">
+        <button class="btn" value="cancel">Cancelar</button>
+        <button class="btn btn-primary" value="save" id="settings-save">Salvar</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- Permissão de gravação de tela no Mac -->
+  <dialog id="mac-screen-dialog" class="dialog" aria-labelledby="mac-screen-title">
+    <form method="dialog" class="dialog-inner">
+      <header class="dialog-head"><h2 id="mac-screen-title">Libere a gravação de tela</h2></header>
+      <p class="note">O macOS precisa da sua permissão para o MeuDisc mostrar sua tela. Abra Ajustes do Sistema, vá em Privacidade e Segurança, Gravação de Tela e Áudio do Sistema, ative o MeuDisc e abra o app de novo.</p>
+      <footer class="dialog-foot">
+        <button class="btn" value="cancel">Agora não</button>
+        <button class="btn btn-primary" value="open" id="mac-screen-open">Abrir Ajustes do Sistema</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <!-- Bloco de cada pessoa na sala (criado quando ela entra) -->
+  <template id="tile-tpl">
+    <figure class="tile" data-cam="off" data-mic="off" hidden>
+      <video autoplay playsinline muted></video>
+      <div class="avatar"></div>
+      <div class="tile-live" hidden>
+        <span class="live-badge">Ao vivo</span>
+        <button class="btn btn-small watch-btn" type="button">Assistir</button>
+      </div>
+      <figcaption>
+        <span class="tile-name"></span><svg class="i mic-off-badge"><use href="#i-mic-off"/></svg><span class="tile-conn"></span>
+      </figcaption>
+      <label class="vol vol-tile" title="Volume desta pessoa">
+        <svg class="i"><use href="#i-volume"/></svg>
+        <input type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume desta pessoa">
+      </label>
+      <audio autoplay></audio>
+      <audio autoplay></audio>
+    </figure>
+  </template>
+
+  <!-- Som do navegador compartilhado (para quem abriu) -->
+  <audio id="browser-audio" autoplay></audio>
+
+  <script src="vendor/peerjs.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

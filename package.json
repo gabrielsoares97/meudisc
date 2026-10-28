@@ -1,0 +1,33 @@
+{
+  "name": "meudisc",
+  "productName": "MeuDisc",
+  "version": "1.0.1",
+  "description": "Sala privada para você e um amigo: voz, câmera e tela em até 120 fps.",
+  "main": "main.js",
+  "author": "Gabriel",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "vendor": "node scripts/vendor.js",
+    "postinstall": "node scripts/vendor.js",
+    "build": "node scripts/build.js",
+    "build:win": "node scripts/build.js win32-x64",
+    "build:mac": "node scripts/build.js darwin-arm64 darwin-x64",
+    "build:android": "node scripts/build-android.js"
+  },
+  "devDependencies": {
+    "@electron/get": "^5.1.0",
+    "@fontsource/big-shoulders-display": "5.3.0",
+    "@fontsource/instrument-sans": "5.3.0",
+    "electron": "44.7.0",
+    "peerjs": "1.5.5",
+    "resedit": "^3.0.2",
+    "yauzl": "^3.4.0",
+    "yazl": "^3.3.1"
+  },
+  "dependencies": {
+    "@ghostery/adblocker-electron": "^2.20.1",
+    "koffi": "^3.3.3"
+  }
+}
